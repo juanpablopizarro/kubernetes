@@ -119,7 +119,7 @@ Interesting, now we have a given amount of replicas up guaranteed but what about
 
 When you execute that command you will see an editor to edit whatever you need, in my case I see this:
 
-<p align="center"><img src="images/kubectl-edit-deployment.png" width="50%"/></p>
+<p align="center"><img src="images/kubectl-edit-deployment.png" width="70%"/></p>
 
 I can move the cursor and modify things. In the special case of `spec.scale`, there is a kubectl option that helps us saving time:
 
