@@ -221,14 +221,17 @@ So.. Now we want to use the just created volume. Before we use it, we have to cl
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
- name: task-pv-claim
+  name: task-pv-claim
 spec:
- storageClassName: manual
- accessModes:
-   - ReadWriteOnce
- resources:
-   requests:
-     storage: 3Gi
+  storageClassName: manual
+  selector:
+    matchLabels:
+        type: local ## this points to the real volume.
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
 ```
 
 Then run `kubectl apply -f data-volume-claim.yaml` and the `kubectl get pvc` commands like this:
