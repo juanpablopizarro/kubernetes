@@ -282,15 +282,12 @@ The `spec.template.spec.volumes` is a list of volumes. In this case we defined a
 In order to deploy an actual microservice just coded in our local environment we have to make sure that the kubernetes cluster has access to your images. Usually you may have your images in a docker registry for this but if you are using minikube you may want to use another, and simple, way:
 				
 `eval $(minikube docker-env)`
+
 `docker image build -t myservices/myservice .`
 
 The first command makes available the docker engine inside the vm that runs minikube, so you are not using your local docker engine anymore. The second command builds and registers a docker image.	What about if you are using a private docker hub?, you must use credentials. In order to use credentials privately you can use the following command:
 				
-`kubectl create secret docker-registry my-private-registry \
-       --docker-server https://index.docker.io/v1/ \
-       --docker-username <your-username> \
-       --docker-password <your-password> \				
-      --docker-email <your-email>`
+`kubectl create secret docker-registry my-private-registry --docker-server https://index.docker.io/v1/ --docker-username <your-username> --docker-password <your-password> --docker-email <your-email>`
 
 As you can see, the flag `--docker-server` defines the docker hub you want. The rest of the config flags are straight forward. Now you can use the `my-private-registry` secret just created like:
 
