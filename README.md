@@ -304,7 +304,7 @@ apiVersion: v1
      - name: my-private-registry
 ```				
 
-Using the imagePullSecrets attribute also works when you are creating Pods using a StatefulSet or a Deployment controller. 
+Using the `imagePullSecrets` attribute also works when you are creating Pods using a StatefulSet or a Deployment controller. 
 
 
 
