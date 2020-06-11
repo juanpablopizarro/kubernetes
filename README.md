@@ -338,13 +338,20 @@ Now we can use `http://nginx.jpp.com` to access out nginx running in a pod into 
 ## Example summary
 To simplify I created a no persistence volume deployment config, so we can run the following commands and see nginx working on our systems:
 
-`kubectl apply -f nginx-deployment-without-pv.yaml`
-`kubectl apply -f nginx-service.yaml` 
-`kubectl apply -f nginx-ingress.yaml`
+```bash
+kubectl apply -f nginx-deployment-without-pv.yaml
+kubectl apply -f nginx-service.yaml
+kubectl apply -f nginx-ingress.yaml
+```
 
 And adding the ip on hosts mapped to `nginx.jpp.com` you can open the URL like this:
 
 <p align="center"><img src="images/nginx-ingress-browser.png" width="70%"/></p>
+
+### Bonus Track
+You can access to a container using `kubectl get pods` to copy a pod name and then run the following command with the pod name:
+
+`kubectl exec -it nginx-deployment-79fc57f8df-mh6qj -- /bin/bash`
 
 ## Conclusions
 Now we can create a deployment defining replicas and using our custom docker image, we can scale up and down, we can add persistence using the persistence volumes and its claims, we can create a service and expose it on one given port.. smells like that is all we need to create a development environment. I hope this helps you in some way.
