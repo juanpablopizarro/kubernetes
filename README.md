@@ -306,6 +306,48 @@ apiVersion: v1
 
 Using the `imagePullSecrets` attribute also works when you are creating Pods using a StatefulSet or a Deployment controller. 
 
+## Ingress
+Up to now we have a service that uses a random port each time we load it but what about if we want to use a given port like 80 or 443?. In order to interface with the kubernete node using a given port we must use ingress. Ingress is an addon that you have to install with the following command:
+
+`minikube addons enable ingress`
+
+Once the addon is installed you can apply the following configuration:
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx
+spec:
+  rules:
+  - host: nginx.jpp.com
+    http: 
+      paths:
+      - path: /
+        backend:
+          serviceName: nginx
+          servicePort: 80
+```
+
+So, now we have to tell our operating system how to route the nginx.jpp.com because obviously is fake. First we have to know which IP minikube is using with the command `minikube ip`, then we can edit the hosts file on your system to add the route line like:
+
+`192.168.64.3    nginx.jpp.com`
+
+Now we can use `http://nginx.jpp.com` to access out nginx running in a pod into a node.
+
+## Example summary
+To simplify I created a no persistence volume deployment config, so we can run the following commands and see nginx working on our systems:
+
+`kubectl apply -f nginx-deployment-without-pv.yaml`
+`kubectl apply -f nginx-service.yaml` 
+`kubectl apply -f nginx-ingress.yaml`
+
+And adding the ip on hosts mapped to `nginx.jpp.com` you can open the URL like this:
+
+<p align="center"><img src="images/nginx-ingress-browser.png" width="70%"/></p>
+
+## Conclusions
+Now we can create a deployment defining replicas and using our custom docker image, we can scale up and down, we can add persistence using the persistence volumes and its claims, we can create a service and expose it on one given port.. smells like that is all we need to create a development environment. I hope this helps you in some way.
 
 
 

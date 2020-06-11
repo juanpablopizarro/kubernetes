@@ -4,10 +4,10 @@ metadata:
   name: nginx
 spec:
   rules:
-  - host: api.nginx.example
+  - host: nginx.jpp.com
     http: 
       paths:
-      - path: /nginx
+      - path: /
         backend:
           serviceName: nginx
           servicePort: 80
