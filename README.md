@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Kubernetes AKA k8s is a container orquestator, maybe the most popular these days, what does that mean?. Basically that given a set of containers (docker ones) you can create and operate them as a cluster of nodes, have its own networking layer and more. K8s was created by google and now is an open source product owned by CNCF (cloud native computing foundation).
+Kubernetes AKA k8s is a container orchestrator, maybe the most popular these days, what does that mean?. Basically that given a set of containers (docker ones) you can create and operate them as a cluster of nodes, have its own networking layer and more. K8s was created by google and now is an open source product owned by CNCF (cloud native computing foundation).
 
 This is k8s in a nutshell:
 <p align="center"><img src="images/k8s-inside.png" width="70%"/></p>
